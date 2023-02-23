@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NetwoEvents</string>
+    <string name="text">Find and organize events to create business contacts"</string>
+    <string name="Login">Войти</string>
+    <string name="editText">Добавьте сообщение</string>
+    <string name="email">Добавьте ваш email</string>
+    <string name="resume">Продолжить</string>
+    <string name="question">Задать вопрос</string>
+</resources>
