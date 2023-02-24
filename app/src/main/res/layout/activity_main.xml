@@ -11,25 +11,25 @@
     <LinearLayout
         android:id="@+id/layout_up"
         android:layout_width="match_parent"
-        android:layout_height="100sp"
+        android:layout_height="@dimen/in_sp"
         android:background="@color/bg1">
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="100sp"
+            android:layout_width="@dimen/in_sp"
             android:layout_height="match_parent"
             android:src="@drawable/ne1"
             />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="100sp"
+            android:id="@+id/button1"
+            android:layout_width="@dimen/in_sp"
             android:layout_height="50sp"
+            android:layout_gravity="center"
             android:layout_marginLeft="180sp"
             android:backgroundTint="@color/bg"
-            android:text="@string/Login"
-            android:layout_gravity="center"
-            />
+            android:onClick="startLogin"
+            android:text="@string/Login" />
 
     </LinearLayout>
 
@@ -43,6 +43,40 @@
         android:textColor="@color/black"
         android:visibility="visible" />
 
+    <LinearLayout
+        android:id="@+id/list"
+        android:layout_below="@id/text"
+        android:layout_width="match_parent"
+        android:layout_height="150sp"
+
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="130sp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_thin"
+            android:text="@string/t1"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/list"
+            />
+        <TextView
+            android:layout_width="130sp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_thin"
+            android:text="@string/t2"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/list"/>
+        <TextView
+            android:layout_width="130sp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_thin"
+            android:text="@string/t3"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/list"/>
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/picture"
@@ -50,8 +84,10 @@
         android:layout_height="270sp"
         android:layout_below="@+id/text"
         android:layout_marginTop="160sp"
-        android:src="@drawable/p2"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/p2"/>
+
+
     <ImageView
         android:id="@+id/question"
         android:layout_below="@id/picture"
@@ -61,6 +97,7 @@
         android:src="@drawable/question"
         android:layout_marginLeft="320sp" />
     <TextView
+        android:id="@+id/txtt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/picture"
@@ -82,7 +119,7 @@
 
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress2"
+            android:id="@+id/email"
             android:layout_width="200sp"
             android:layout_height="50sp"
             android:layout_marginLeft="190sp"
@@ -90,12 +127,13 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/messages"
             android:layout_width="200sp"
             android:layout_height="50sp"
             android:layout_marginLeft="190sp"
-            android:hint="@string/editText"/>
+            android:hint="@string/messages"/>
         <Button
+            android:id="@+id/button2"
             android:layout_marginLeft="190sp"
             android:layout_width="200sp"
             android:layout_height="50sp"
