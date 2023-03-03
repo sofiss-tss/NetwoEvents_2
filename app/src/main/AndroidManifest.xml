@@ -12,9 +12,6 @@
         android:theme="@style/Theme.NetwoEvents"
         tools:targetApi="31">
         <activity
-            android:name=".Login"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

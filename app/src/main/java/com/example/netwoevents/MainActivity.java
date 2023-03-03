@@ -1,93 +1,46 @@
 package com.example.netwoevents;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageView picture;
-    private ImageView question;
-    private EditText email;
-    private EditText message;
+
     private Button btn1;
-    private Button btn2;
-    private TextView txt;
-    private String em;
+    public void setNewFragment(Fragment fragment){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frame_layout, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
 
-    private static final String TAG = "MyTAG";
-
-
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        picture = (ImageView)findViewById(R.id.picture);
-        picture.setImageResource(R.drawable.p2);
-        txt =  (TextView)findViewById(R.id.txtt);
-        question = (ImageView)findViewById(R.id.question);
 
-        email = (EditText)findViewById(R.id.email);
-        message = (EditText)findViewById(R.id.messages);
-        btn2 =  (Button)findViewById(R.id.button2);
+        btn1 = findViewById(R.id.button1);
+        setNewFragment(new HomeFragment());
 
-
-        btn2.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Log.i(TAG,"Нажата клавиша продолжить");
-                        String ms = null;
-                        em = String.valueOf(email.getText());
-                        ms = String.valueOf(message.getText());
-                        if (!isEmailValid(em)) {
-                            Toast.makeText(MainActivity.this,
-                                    "Проверьте адрес электронной почты",
-                                    Toast.LENGTH_LONG).show();
-                            Log.e(TAG,"Неверный адрес электронной почты");
-                        }
-                        else if (ms.isEmpty()) {
-
-                            Toast.makeText(MainActivity.this,
-                                    "Введите сообщение", Toast.LENGTH_LONG).show();
-                            Log.w(TAG,"Пустое сообщение");
-                        }
-                        else {
-                            Toast.makeText(MainActivity.this,
-                                    "Сообщение получено! Ожидайте ответа на почте",
-                                    Toast.LENGTH_LONG).show();
-                            txt.setText("Cообщение отправлено");
-                            Log.i(TAG,"Сообщение отправлено");
-                            question.setImageResource(R.drawable.check);
-                            email.setEnabled(false);
-                            message.setEnabled(false);
-                        }
-                    }
-                }
-        );
-    }
-
-    public void startLogin(View v)
-    {
-        Log.i(TAG,"Нажата клавиша Войти");
-        btn1 =  (Button)findViewById(R.id.button1);
-        Intent intent = new Intent(this,Login.class);
-        intent.putExtra("email", em);
-        startActivity(intent);
-    }
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setNewFragment(new LoginFragment());
+            }
+        });
 
 
-    public boolean isEmailValid(String email){
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }
+
+
+
+
+
 
 
 //import android.content.Intent;

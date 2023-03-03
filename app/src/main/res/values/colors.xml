@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bg">#dfcfca</color>
     <color name="bg1">#fbfaf9</color>
+    <color name="pole">#6A6668</color>
     <color name="list">#472931</color>
 </resources>
