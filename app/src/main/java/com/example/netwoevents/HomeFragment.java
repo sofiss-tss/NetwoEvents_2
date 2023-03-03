@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 public class HomeFragment extends Fragment {
     private ImageView picture;
@@ -23,7 +24,7 @@ public class HomeFragment extends Fragment {
     private EditText message;
     private Button btn2;
     private TextView txt;
-    private String em;
+
 
     private static final String TAG = "MyTAG";
     private static final String F1 = "Fragment_1";
@@ -42,11 +43,8 @@ public class HomeFragment extends Fragment {
         Toast.makeText(getActivity(),
                 "onCreateView",
                 Toast.LENGTH_LONG).show();
-
         return inflater.inflate(R.layout.fragment_home, container, false);
-
     }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +70,8 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Log.i(TAG,"Нажата клавиша продолжить");
-                        String ms = null;
-                        em = String.valueOf(email.getText());
-                        ms = String.valueOf(message.getText());
+                        String em = String.valueOf(email.getText());
+                        String ms = String.valueOf(message.getText());
                         if (!isEmailValid(em)) {
                             Toast.makeText(getActivity(),
                                     "Проверьте адрес электронной почты",
@@ -103,16 +100,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        Log.d(F1,"onAttach" );
-        Toast.makeText(getActivity(),
-                "onAttach",
-                Toast.LENGTH_LONG).show();
-
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,9 +109,28 @@ public class HomeFragment extends Fragment {
         Toast.makeText(getActivity(),
                 "onCreate",
                 Toast.LENGTH_LONG).show();
+
+        getParentFragmentManager().setFragmentResultListener("requestKey",
+                this, new FragmentResultListener() {
+                    public void onFragmentResult(@NonNull String requestKey,
+                                                 @NonNull Bundle bundle) {
+
+                        String result = bundle.getString("bundleKey");
+                        email.setText(result);
+                    }
+                });
+
+
     }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
 
-
+        Log.d(F1,"onAttach" );
+        Toast.makeText(getActivity(),
+                "onAttach",
+                Toast.LENGTH_LONG).show();
+    }
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
@@ -134,7 +140,6 @@ public class HomeFragment extends Fragment {
                 "onViewStateRestored",
                 Toast.LENGTH_LONG).show();
     }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -154,7 +159,6 @@ public class HomeFragment extends Fragment {
                 "onResume",
                 Toast.LENGTH_LONG).show();
     }
-
     @Override
     public void onPause() {
         super.onPause();
@@ -204,7 +208,6 @@ public class HomeFragment extends Fragment {
                 "onDestroy",
                 Toast.LENGTH_LONG).show();
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -214,4 +217,5 @@ public class HomeFragment extends Fragment {
                 "onDetach",
                 Toast.LENGTH_LONG).show();
     }
+
 }

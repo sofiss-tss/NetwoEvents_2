@@ -11,12 +11,13 @@ import androidx.fragment.app.FragmentTransaction;
 public class MainActivity extends AppCompatActivity {
 
     private Button btn1;
+
     public void setNewFragment(Fragment fragment){
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction().
+                setReorderingAllowed(true);
         ft.replace(R.id.frame_layout, fragment);
         ft.addToBackStack(null);
         ft.commit();
-
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
         btn1 = findViewById(R.id.button1);
         setNewFragment(new HomeFragment());
-
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setNewFragment(new LoginFragment());
             }
         });
-
-
     }
 }
 

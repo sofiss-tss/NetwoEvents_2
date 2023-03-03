@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class LoginFragment extends Fragment {
     private Button btn1;
+    private EditText email;
+    private EditText password;
+
     private static final String F2 = "Fragment_2";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,7 +34,6 @@ public class LoginFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
-
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         Log.d(F2, "onViewCreated");
@@ -43,10 +46,27 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 HomeFragment homeFragment = new HomeFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
+                        setReorderingAllowed(true);
                 ft.replace(R.id.frame_layout, homeFragment);
                 ft.addToBackStack(null);
                 ft.commit();
+
+               email = (EditText) getView().findViewById(R.id.et1);
+               password = (EditText) getView().findViewById(R.id.et2);
+
+               String em = email.getText().toString();
+               String ps = password.getText().toString();
+               
+                if (em != null)
+                {
+                    Bundle result = new Bundle();
+                    result.putString("bundleKey", em);
+                    getParentFragmentManager().setFragmentResult(
+                            "requestKey", result);
+
+                }
+
             }
         });
     }
@@ -59,19 +79,18 @@ public class LoginFragment extends Fragment {
         Toast.makeText(getActivity(),
                 "onAttach",
                 Toast.LENGTH_LONG).show();
-
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         Log.d(F2,"onCreate" );
         Toast.makeText(getActivity(),
                 "onCreate",
                 Toast.LENGTH_LONG).show();
     }
-
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
@@ -162,5 +181,4 @@ public class LoginFragment extends Fragment {
                 "onDetach",
                 Toast.LENGTH_LONG).show();
     }
-
 }
