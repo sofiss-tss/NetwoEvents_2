@@ -13,6 +13,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 public class LoginFragment extends Fragment {
+
+    private Button btnEvent;
+    private Button btnContact;
+
     private Button btn1;
     private EditText email;
     private EditText password;
@@ -26,6 +30,34 @@ public class LoginFragment extends Fragment {
     }
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        btnContact = (Button) getView().findViewById(R.id.button_contact_list);
+        btnEvent = (Button) getView().findViewById(R.id.button_event_list);
+
+        btnContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ContactListFtagment contactListFtagment = new ContactListFtagment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
+                        setReorderingAllowed(true);
+                ft.replace(R.id.frame_layout, contactListFtagment);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+        btnEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EventRecyclerFragment eventRecyclerFragment = new EventRecyclerFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
+                        setReorderingAllowed(true);
+                ft.replace(R.id.frame_layout, eventRecyclerFragment);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
 
         btn1 =  (Button) getView().findViewById(R.id.button_home);
         btn1.setOnClickListener(new View.OnClickListener() {
