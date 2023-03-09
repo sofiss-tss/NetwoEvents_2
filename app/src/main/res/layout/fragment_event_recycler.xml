@@ -6,4 +6,5 @@
     tools:context=".EventRecyclerFragment"
     android:background="@color/bg">
 
+
 </FrameLayout>

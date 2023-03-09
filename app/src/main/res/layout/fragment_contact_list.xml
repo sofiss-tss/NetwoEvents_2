@@ -5,4 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ContactListFtagment"
     android:background="@color/bg">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
 </FrameLayout>
