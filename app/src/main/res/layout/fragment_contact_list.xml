@@ -6,7 +6,11 @@
     tools:context=".ContactListFtagment"
     android:background="@color/bg">
     <ListView
+        android:id="@+id/contact_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        >
     </ListView>
 </FrameLayout>
