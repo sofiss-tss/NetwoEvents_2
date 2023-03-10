@@ -17,17 +17,10 @@ public class LoginFragment extends Fragment {
     private Button btnEvent;
     private Button btnContact;
 
+
     private Button btn1;
     private EditText email;
     private EditText password;
-
-    private static final String F2 = "Fragment_2";
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_login, container, false);
-    }
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
@@ -87,6 +80,13 @@ public class LoginFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
 

@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     tools:context=".EventRecyclerFragment"
     android:background="@color/bg">
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/event_recycler_list"
     android:layout_width="match_parent"

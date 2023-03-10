@@ -1,10 +1,8 @@
 package com.example.netwoevents;
 
 public class Item {
-    int image;
-    String names;
-
-
+    private int image;
+    private String names;
     public Item(int image, String names) {
         this.image = image;
         this.names = names;
@@ -13,7 +11,6 @@ public class Item {
     public String getText() {
         return names;
     }
-
     public int getImage() {
         return image;
     }

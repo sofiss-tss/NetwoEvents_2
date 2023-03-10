@@ -22,7 +22,8 @@ import java.util.ArrayList;
 
 public class EventRecyclerFragment extends Fragment {
     private RecyclerView listView;
-    private static final String Tag = "MyTag";
+    private static final String TAG = "MyTag";
+
 
     public ArrayList<String> getStringFromAssetFile(Context context) throws IOException
     {
@@ -68,19 +69,23 @@ public class EventRecyclerFragment extends Fragment {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
         ArrayList<Item> items= new ArrayList<>();
         for (int i = 0; i < 200; i++){
             Item item = new Item(image200.get(i),namesContact[i]);
             items.add(item);
 
         }
+
+
         listView = (RecyclerView) getView().findViewById(R.id.event_recycler_list);
         MyCustomRecyclerViewAdapter adapter = new MyCustomRecyclerViewAdapter(getContext(), items);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         listView.setLayoutManager(layoutManager);
         listView.setAdapter(adapter);
-    }
 
+}
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_event_recycler, container, false);
