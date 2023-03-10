@@ -48,7 +48,6 @@ public class ContactListFtagment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        int[] images = new int[200];
 
             ArrayList<Integer> image = new ArrayList<>();
             ArrayList<Integer> image200 = new ArrayList<>();
@@ -65,12 +64,7 @@ public class ContactListFtagment extends Fragment {
 
             for (int i = 0; i<20; i++){
                         image200.addAll(image);
-                    }
-
-//            R.drawable.a, R.drawable.b, R.drawable.c,
-//                    R.drawable.d, R.drawable.e, R.drawable.f, R.drawable.g, R.drawable.h, R.drawable.i,
-//                    R.drawable.k};
-           // System.arraycopy(image, 0, images, images[i*10],10);
+            }
 
         String [] namesContact ;
         try {
@@ -82,17 +76,14 @@ public class ContactListFtagment extends Fragment {
         for (int i = 0; i < 200; i++){
             Item item = new Item(image200.get(i),namesContact[i]);
             items.add(item);
-
         }
 
 
         listView = (ListView) getView().findViewById(R.id.contact_list);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.list_view_layout,R.id.item_text,namesContact);
-//        listView.setAdapter(adapter);
         MyCustomListAdapter adapter = new MyCustomListAdapter(getContext(), R.layout.list_view_layout, items);
         listView.setAdapter(adapter);
 
-
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.list_view_layout,R.id.item_text,namesContact);
 
     }
 
