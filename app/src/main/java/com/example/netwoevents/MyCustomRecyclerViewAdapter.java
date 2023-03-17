@@ -51,7 +51,7 @@ public class MyCustomRecyclerViewAdapter extends RecyclerView.Adapter <MyCustomR
                 textView = view.findViewById(R.id.item_text);
                 imageView = view.findViewById(R.id.item_image);
 
-                
+
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

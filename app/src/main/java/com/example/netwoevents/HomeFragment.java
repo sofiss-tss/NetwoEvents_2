@@ -11,10 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
 
 public class HomeFragment extends Fragment {
     private ImageView picture;
@@ -24,7 +22,7 @@ public class HomeFragment extends Fragment {
     private Button btn2;
     private TextView txt;
 
-
+    private String value;
     private static final String TAG = "MyTAG";
     private static final String F1 = "Fragment_1";
 
@@ -44,6 +42,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         picture = (ImageView) getView().findViewById(R.id.picture);
         picture.setImageResource(R.drawable.p2);
         txt =  (TextView) getView().findViewById(R.id.txtt);
@@ -52,6 +51,11 @@ public class HomeFragment extends Fragment {
         email = (EditText) getView().findViewById(R.id.email);
         message = (EditText) getView().findViewById(R.id.messages);
         btn2 =  (Button) getView().findViewById(R.id.button2);
+
+        if (getArguments() != null) {
+            value = getArguments().getString("bundleKey");
+            email.setText(value);
+        }
 
 
         btn2.setOnClickListener(
@@ -94,15 +98,18 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getParentFragmentManager().setFragmentResultListener("requestKey",
-                this, new FragmentResultListener() {
-                    public void onFragmentResult(@NonNull String requestKey,
-                                                 @NonNull Bundle bundle) {
 
-                        String result = bundle.getString("bundleKey");
-                        email.setText(result);
-                    }
-                });
+
+
+//        getParentFragmentManager().setFragmentResultListener("requestKey",
+//                this, new FragmentResultListener() {
+//                    public void onFragmentResult(@NonNull String requestKey,
+//                                                 @NonNull Bundle bundle) {
+//
+//                        String result = bundle.getString("bundleKey");
+//                        email.setText(result);
+//                    }
+//                });
 
 
     }

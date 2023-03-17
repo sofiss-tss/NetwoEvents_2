@@ -27,9 +27,14 @@ public class LoginFragment extends Fragment {
         btnContact = (Button) getView().findViewById(R.id.button_contact_list);
         btnEvent = (Button) getView().findViewById(R.id.button_event_list);
 
+
+
+
         btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 ContactListFtagment contactListFtagment = new ContactListFtagment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
                         setReorderingAllowed(true);
@@ -42,6 +47,8 @@ public class LoginFragment extends Fragment {
         btnEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 EventRecyclerFragment eventRecyclerFragment = new EventRecyclerFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
                         setReorderingAllowed(true);
@@ -56,6 +63,7 @@ public class LoginFragment extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 HomeFragment homeFragment = new HomeFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
                         setReorderingAllowed(true);
@@ -69,14 +77,14 @@ public class LoginFragment extends Fragment {
                String em = email.getText().toString();
                String ps = password.getText().toString();
 
-                if (em != null)
-                {
+
+
                     Bundle result = new Bundle();
                     result.putString("bundleKey", em);
                     getParentFragmentManager().setFragmentResult(
                             "requestKey", result);
 
-                }
+
 
             }
         });
