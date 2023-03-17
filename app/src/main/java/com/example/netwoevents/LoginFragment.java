@@ -66,7 +66,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment2);
+
+                //Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment2);
 
 
 //                HomeFragment homeFragment = new HomeFragment();
@@ -81,6 +82,11 @@ public class LoginFragment extends Fragment {
 
                String em = email.getText().toString();
                String ps = password.getText().toString();
+
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("bundleKey", em);
+                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment2, bundle);
 
 //                    Bundle result = new Bundle();
 //                    result.putString("bundleKey", em);
