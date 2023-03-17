@@ -7,6 +7,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public void setNewFragment(Fragment fragment){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction().
                 setReorderingAllowed(true);
-        ft.replace(R.id.frame_layout, fragment);
+        ft.replace(R.id.fragmentContainerView, fragment);
         ft.addToBackStack(null);
         ft.commit();
     }
@@ -25,14 +27,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn1 = findViewById(R.id.button1);
-        setNewFragment(new HomeFragment());
+        //setNewFragment(new HomeFragment());
 
 
+       NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+               .findFragmentById(R.id.fragmentContainerView);
+       NavController navController = navHostFragment.getNavController();
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNewFragment(new LoginFragment());
+               navController.navigate(R.id.action_homeFragment_to_loginFragment);
 
             }
         });

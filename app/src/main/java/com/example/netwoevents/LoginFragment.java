@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 
 public class LoginFragment extends Fragment {
@@ -33,14 +33,14 @@ public class LoginFragment extends Fragment {
         btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_contactListFtagment);
 
-
-                ContactListFtagment contactListFtagment = new ContactListFtagment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
-                        setReorderingAllowed(true);
-                ft.replace(R.id.frame_layout, contactListFtagment);
-                ft.addToBackStack(null);
-                ft.commit();
+//                ContactListFtagment contactListFtagment = new ContactListFtagment();
+//                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
+//                        setReorderingAllowed(true);
+//                ft.replace(R.id.frame_layout, contactListFtagment);
+//                ft.addToBackStack(null);
+//                ft.commit();
             }
         });
 
@@ -48,13 +48,15 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_eventRecyclerFragment);
 
-                EventRecyclerFragment eventRecyclerFragment = new EventRecyclerFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
-                        setReorderingAllowed(true);
-                ft.replace(R.id.frame_layout, eventRecyclerFragment);
-                ft.addToBackStack(null);
-                ft.commit();
+
+//                EventRecyclerFragment eventRecyclerFragment = new EventRecyclerFragment();
+//                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
+//                        setReorderingAllowed(true);
+//                ft.replace(R.id.frame_layout, eventRecyclerFragment);
+//                ft.addToBackStack(null);
+//                ft.commit();
             }
         });
 
@@ -64,12 +66,15 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                HomeFragment homeFragment = new HomeFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
-                        setReorderingAllowed(true);
-                ft.replace(R.id.frame_layout, homeFragment);
-                ft.addToBackStack(null);
-                ft.commit();
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment2);
+
+
+//                HomeFragment homeFragment = new HomeFragment();
+//                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
+//                        setReorderingAllowed(true);
+//                ft.replace(R.id.frame_layout, homeFragment);
+//                ft.addToBackStack(null);
+//                ft.commit();
 
                email = (EditText) getView().findViewById(R.id.et1);
                password = (EditText) getView().findViewById(R.id.et2);
@@ -77,12 +82,10 @@ public class LoginFragment extends Fragment {
                String em = email.getText().toString();
                String ps = password.getText().toString();
 
-
-
-                    Bundle result = new Bundle();
-                    result.putString("bundleKey", em);
-                    getParentFragmentManager().setFragmentResult(
-                            "requestKey", result);
+//                    Bundle result = new Bundle();
+//                    result.putString("bundleKey", em);
+//                    getParentFragmentManager().setFragmentResult(
+//                            "requestKey", result);
 
 
 

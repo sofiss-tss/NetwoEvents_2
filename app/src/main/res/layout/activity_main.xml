@@ -42,13 +42,20 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
+<!--    <FrameLayout-->
+<!--        android:id="@+id/frame_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="100sp">-->
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100sp">
-
-    </FrameLayout>
-
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation"
+        android:layout_marginTop="100sp"/>
 
 </RelativeLayout>
