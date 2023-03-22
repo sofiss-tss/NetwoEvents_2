@@ -25,30 +25,15 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         btnContact = (Button) getView().findViewById(R.id.button_contact_list);
+
+
         btnEvent = (Button) getView().findViewById(R.id.button_event_list);
-
-
-
-
-        btnContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_contactListFtagment);
-
-//                ContactListFtagment contactListFtagment = new ContactListFtagment();
-//                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
-//                        setReorderingAllowed(true);
-//                ft.replace(R.id.frame_layout, contactListFtagment);
-//                ft.addToBackStack(null);
-//                ft.commit();
-            }
-        });
-
         btnEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_eventRecyclerFragment);
+                Navigation.findNavController(view).navigate(
+                        R.id.action_loginFragment_to_eventRecyclerFragment);
 
 
 //                EventRecyclerFragment eventRecyclerFragment = new EventRecyclerFragment();
@@ -59,6 +44,23 @@ public class LoginFragment extends Fragment {
 //                ft.commit();
             }
         });
+
+        btnContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(
+                        R.id.action_loginFragment_to_contactListFtagment);
+
+//                ContactListFtagment contactListFtagment = new ContactListFtagment();
+//                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().
+//                        setReorderingAllowed(true);
+//                ft.replace(R.id.frame_layout, contactListFtagment);
+//                ft.addToBackStack(null);
+//                ft.commit();
+            }
+        });
+
+
 
 
         btn1 =  (Button) getView().findViewById(R.id.button_home);
