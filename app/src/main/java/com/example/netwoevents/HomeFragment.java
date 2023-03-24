@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ public class HomeFragment extends Fragment {
     private EditText email;
     private EditText message;
     private Button btn2;
+    private ImageButton btnMsg;
     private TextView txt;
 
     private String value;
@@ -63,6 +66,11 @@ public class HomeFragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +80,20 @@ public class HomeFragment extends Fragment {
         picture.setImageResource(R.drawable.p2);
         txt =  (TextView) getView().findViewById(R.id.txtt);
         question = (ImageView) getView().findViewById(R.id.question);
-
         email = (EditText) getView().findViewById(R.id.email);
         message = (EditText) getView().findViewById(R.id.messages);
         btn2 =  (Button) getView().findViewById(R.id.button2);
+
+
+        btnMsg = (ImageButton) getView().findViewById(R.id.button_msg);
+        btnMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), EventService.class);
+                getActivity().startService(intent);
+            }
+        });
+
 
         if (getArguments() != null) {
             value = getArguments().getString("bundleKey");
@@ -83,71 +101,67 @@ public class HomeFragment extends Fragment {
         }
 
 
-        btn2.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-
-                        Log.i(TAG,"Нажата клавиша продолжить");
-                        String em = String.valueOf(email.getText());
-                        String ms = String.valueOf(message.getText());
-                        if (!isEmailValid(em)) {
-                            Toast.makeText(getActivity(),
-                                    "Проверьте адрес электронной почты",
-                                    Toast.LENGTH_LONG).show();
-                            Log.e(TAG,"Неверный адрес электронной почты");
-                        }
-                        else if (ms.isEmpty()) {
-
-                            Toast.makeText(getActivity(),
-                                    "Введите сообщение", Toast.LENGTH_LONG).show();
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG,"Нажата клавиша продолжить");
+                String em = String.valueOf(email.getText());
+                String ms = String.valueOf(message.getText());
+                if (!isEmailValid(em)) {
+                    Toast.makeText(getActivity(),
+                            "Проверьте адрес электронной почты",
+                                Toast.LENGTH_LONG).show();
+                    Log.e(TAG,"Неверный адрес электронной почты");
+                } else if (ms.isEmpty()) {
+                    Toast.makeText(getActivity(),
+                            "Введите сообщение", Toast.LENGTH_LONG).show();
                             Log.w(TAG,"Пустое сообщение");
                         }
-                        else {
+                else {
 
-                            // Есть ли разрешения на отправку уведомления
-                            if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.
-                                    POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                                // Если разрешение не получено, запрашиваем его у пользователя
-                                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
-                            }
+                    // Есть ли разрешения на отправку уведомления
+                     if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.
+                             POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                         // Если разрешение не получено, запрашиваем его у пользователя
+                         requestPermissions(new String[]{
+                                 Manifest.permission.POST_NOTIFICATIONS}, 1);
+                     }
 
-
-                            //Реакция на уведомления
-                            Intent notificationIntent = new Intent(getActivity(), MainActivity.class);
-                            PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(),
-                                    0, notificationIntent,
+                     //Реакция на уведомления
+                     Intent notificationIntent = new Intent(getActivity(), MainActivity.class);
+                     PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(),
+                             0, notificationIntent,
                                     PendingIntent.FLAG_CANCEL_CURRENT);
 
+                     // Создаем канал уведомлений (для Android 8.0 (API 26) и выше.)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        String name = "name_channel";
+                        String description = "description_channel";
+                        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+                        channel.setDescription(description);
+                        NotificationManager notificationManager = requireContext().
+                                getSystemService(NotificationManager.class);
+                        notificationManager.createNotificationChannel(channel);
+                    }
 
-                            // Создаем канал уведомлений (для Android 8.0 и выше)
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                CharSequence name = "name_channel";
-                                String description = "description_channel";
-                                int importance = NotificationManager.IMPORTANCE_DEFAULT;
-                                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-                                channel.setDescription(description);
-                                NotificationManager notificationManager = requireContext().
-                                        getSystemService(NotificationManager.class);
-                                notificationManager.createNotificationChannel(channel);
-                            }
+                    // Создаем уведомление
+                    String text = "Ваше сообщение получено!\nОжидайте ответа на почте " + em;
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(),
+                            CHANNEL_ID)
+                            .setSmallIcon(R.drawable.check)
+                            .setContentTitle("Уведомление от NetwoEvents")
+                            .setContentIntent(pendingIntent)
+                            .setContentText("Ваше сообщение получено!")
+                            .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ne1))
+                            .setAutoCancel(true); // автоматически закрыть уведомление после нажатия
 
-                            // Создаем уведомление
-                            String text = "Ваше сообщение получено!\nОжидайте ответа на почте " + em;
-                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(),
-                                    CHANNEL_ID)
-                                    .setSmallIcon(R.drawable.ne2)
-                                    .setContentTitle("NetwoEvents")
-                                    .setContentIntent(pendingIntent)
-                                    .setContentText("Ваше сообщение получено!")
-                                    .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
-                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                    .setAutoCancel(true); // автоматически закрыть уведомление после нажатия
-                            
-                            // Отправляем уведомление
-                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(requireContext());
-                            notificationManager.notify(NOTIFICATION_ID, builder.build());
+                    // Отправляем уведомление
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat
+                            .from(requireContext());
+                    notificationManager.notify(NOTIFICATION_ID, builder.build());
 
 
                             Toast.makeText(getActivity(),
@@ -165,17 +179,8 @@ public class HomeFragment extends Fragment {
 
     }
 
-//    public void requestPermissions() {
-//        ActivityCompat.requestPermissions(getActivity(),
-//                new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
-//
-//    }
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
 
 
