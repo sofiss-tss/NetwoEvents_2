@@ -1,9 +1,6 @@
 package com.example.netwoevents.ui.presentation;
 
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.netwoevents.data.repository.ContactRepository;
-import com.example.netwoevents.data.repository.UserRepository;
 import com.example.netwoevents.domain.models.Item;
-import com.example.netwoevents.domain.adapter.MyCustomListAdapter;
+import com.example.netwoevents.ui.presentation.adapter.MyCustomListAdapter;
 import com.example.netwoevents.R;
-import com.example.netwoevents.domain.repository.UserRepositoryInterface;
 import com.example.netwoevents.domain.usecase.GetContactListUseCase;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ContactListFragment extends Fragment {

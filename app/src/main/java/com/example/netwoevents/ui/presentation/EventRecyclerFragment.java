@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.netwoevents.data.repository.EventRepository;
 import com.example.netwoevents.domain.models.Item;
-import com.example.netwoevents.domain.adapter.MyCustomRecyclerViewAdapter;
+import com.example.netwoevents.ui.presentation.adapter.MyCustomRecyclerViewAdapter;
 import com.example.netwoevents.R;
 import com.example.netwoevents.domain.usecase.GetEventListUseCase;
 import java.util.ArrayList;

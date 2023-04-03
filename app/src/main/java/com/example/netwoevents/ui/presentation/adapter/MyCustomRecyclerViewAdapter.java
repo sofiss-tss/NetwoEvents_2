@@ -1,4 +1,4 @@
-package com.example.netwoevents.domain.adapter;
+package com.example.netwoevents.ui.presentation.adapter;
 
 import android.content.Context;
 import android.util.Log;
