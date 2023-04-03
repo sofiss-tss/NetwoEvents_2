@@ -1,4 +1,4 @@
-package com.example.netwoevents;
+package com.example.netwoevents.domain.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.netwoevents.R;
+import com.example.netwoevents.domain.models.Item;
+
 import java.util.List;
 
 public class MyCustomRecyclerViewAdapter extends RecyclerView.Adapter <MyCustomRecyclerViewAdapter.ViewHolder>{
@@ -19,7 +22,7 @@ public class MyCustomRecyclerViewAdapter extends RecyclerView.Adapter <MyCustomR
         public static Context context;
         private static final String TAG = "List_2";
 
-        MyCustomRecyclerViewAdapter(Context context, List<Item> items) {
+        public MyCustomRecyclerViewAdapter(Context context, List<Item> items) {
             this.items = items;
             this.inflater = LayoutInflater.from(context);
             this.context = context;

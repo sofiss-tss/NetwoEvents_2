@@ -1,4 +1,4 @@
-package com.example.netwoevents;
+package com.example.netwoevents.domain.models;
 
 public class Item {
     private int image;
