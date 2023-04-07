@@ -1,4 +1,4 @@
-package com.example.netwoevents.ui.presentation;
+package com.example.netwoevents.ui.view;
 
 import android.app.Fragment;
 import android.os.Bundle;

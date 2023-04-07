@@ -1,4 +1,4 @@
-package com.example.netwoevents.ui.presentation;
+package com.example.netwoevents.ui.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,15 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import com.example.netwoevents.R;
-import com.example.netwoevents.data.repository.UserRepository;
 import com.example.netwoevents.domain.models.UserData;
-import com.example.netwoevents.domain.usecase.SaveUserDataUseCase;
+import com.example.netwoevents.ui.viewmodel.LoginViewModel;
+import com.example.netwoevents.ui.viewmodel.LoginViewModelFactory;
 
 
 public class LoginFragment extends Fragment {
@@ -56,13 +55,15 @@ public class LoginFragment extends Fragment {
         String ps = password.getText().toString();
 
         btnLogin = btnHome =  (Button) getView().findViewById(R.id.button_login);
+
+        LoginViewModel loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory(getContext())).get(LoginViewModel.class);
         btnLogin.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
-
-                UserRepository userRepository = new UserRepository(getContext());
-                SaveUserDataUseCase saveUserDataUseCase = new SaveUserDataUseCase(userRepository);
-                saveUserDataUseCase.execute(new UserData(em, ps));
+                UserData userData = new UserData(em, ps);
+                loginViewModel.saveUserData(userData);
 
             }
         });

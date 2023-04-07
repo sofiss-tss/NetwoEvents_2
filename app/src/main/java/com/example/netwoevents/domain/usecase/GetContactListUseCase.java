@@ -13,8 +13,8 @@ public class GetContactListUseCase {
         this.cr = cr;
     }
 
-    public ArrayList<Item> execute(Context context){
-        return cr.getContactList(context);
+    public ArrayList<Item> execute(){
+        return cr.getContactList();
     }
 
 

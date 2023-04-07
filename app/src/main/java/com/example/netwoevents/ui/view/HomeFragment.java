@@ -1,4 +1,4 @@
-package com.example.netwoevents.ui.presentation;
+package com.example.netwoevents.ui.view;
 
 
 import android.Manifest;
@@ -28,10 +28,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.netwoevents.R;
 import com.example.netwoevents.domain.models.Message;
-import com.example.netwoevents.domain.usecase.CheckEmailValidUseCase;
-import com.example.netwoevents.domain.usecase.SendMessageUseCase;
+import com.example.netwoevents.ui.viewmodel.HomeViewModel;
 
 public class HomeFragment extends Fragment {
     private ImageView picture;
@@ -43,29 +45,8 @@ public class HomeFragment extends Fragment {
     private TextView txt;
 
     private String value;
+    String toastText;
     private static final String TAG = "MyTAG";
-
-
-
-    private Boolean sendMessage(Message msg)
-    {
-        if (!CheckEmailValidUseCase.isEmailValid(msg.getEmail())) {
-            Toast.makeText(getContext(),
-                    "Проверьте адрес электронной почты",
-                    Toast.LENGTH_SHORT).show();
-        } else if (msg.getMessage().isEmpty()) {
-            Toast.makeText(getContext(),
-                    "Введите сообщение", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getContext(),
-                    "Сообщение получено! Ожидайте ответа на почте",
-                    Toast.LENGTH_SHORT).show();
-            return true;
-
-        }
-        return false;
-    }
-
     private final String CHANNEL_ID="channel_id";
     private static final int NOTIFICATION_ID = 1;
 
@@ -121,8 +102,6 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-
-
         picture = (ImageView) getView().findViewById(R.id.picture);
         picture.setImageResource(R.drawable.p2);
         txt =  (TextView) getView().findViewById(R.id.txtt);
@@ -145,26 +124,37 @@ public class HomeFragment extends Fragment {
             email.setText(value);
         }
 
+
+        String em = String.valueOf(email.getText());
+        String ms = String.valueOf(message.getText());
+
+        Message msg = new Message(em, ms);
+
+
+
+        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel.getResultLive().observe(getViewLifecycleOwner(),resultLive ->{
+            toastText = (String) resultLive;
+
+        });
+
+
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                homeViewModel.checkMessage(msg);
+                Toast.makeText(getContext(),toastText, Toast.LENGTH_SHORT).show();
 
 
-                SendMessageUseCase sendMessageUseCase = new SendMessageUseCase();
+               if(homeViewModel.getCorrectData()) {
+                   homeViewModel.sendMessage(msg);
+                   txt.setText("Cообщение отправлено");
+                   question.setImageResource(R.drawable.check);
+                   email.setEnabled(false);
+                   message.setEnabled(false);
+                   sendNotification(msg);
+               }
 
-
-                String em = String.valueOf(email.getText());
-                String ms = String.valueOf(message.getText());
-
-                Message msg = new Message(em, ms);
-                if (sendMessage(msg)) {
-                    sendMessageUseCase.execute(msg);
-                    sendNotification(msg);
-                    txt.setText("Cообщение отправлено");
-                    question.setImageResource(R.drawable.check);
-                    email.setEnabled(false);
-                    message.setEnabled(false);
-                }
 
             }
         });

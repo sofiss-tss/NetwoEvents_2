@@ -1,39 +1,36 @@
 package com.example.netwoevents.data.repository;
 
-import android.content.Context;
 
-
+import com.example.netwoevents.data.storage.user.User;
+import com.example.netwoevents.data.storage.user.UserStorage;
 import com.example.netwoevents.domain.models.UserData;
 import com.example.netwoevents.domain.repository.UserRepositoryInterface;
 
 public class UserRepository implements UserRepositoryInterface {
 
-    private Context context;
+   private UserStorage userStorage;
 
-
-
-    public UserRepository(Context context) {
-        this.context = context;
+    public UserRepository(UserStorage userStorage) {
+        this.userStorage = userStorage;
     }
 
     @Override
     public String getUserEmail() {
-        return null;
+        return userStorage.getEmail();
     }
 
     @Override
     public String getUserPassword() {
-        return null;
+       return userStorage.getPassword();
     }
 
 
 
     @Override
     public Boolean saveUserData(UserData userData) {
-        if (userData.getEmail().isEmpty() || userData.getPassword().isEmpty()){
-            return false;
-        } else {
-            return true;
-        }
+
+        User user  = new User(userData.getEmail(),userData.getPassword());
+        return userStorage.saveData(user);
+
     }
 }

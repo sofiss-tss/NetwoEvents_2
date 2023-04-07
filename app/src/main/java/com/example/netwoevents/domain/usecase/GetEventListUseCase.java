@@ -14,7 +14,7 @@ public class GetEventListUseCase {
         this.er = er;
     }
 
-    public ArrayList<Item> execute(Context context){
-       return er.getEventList(context);
+    public ArrayList<Item> execute(){
+       return er.getEventList();
     }
 }

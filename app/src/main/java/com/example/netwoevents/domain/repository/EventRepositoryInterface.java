@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 public interface EventRepositoryInterface {
 
-    ArrayList<Item> getEventList (Context context);
+    ArrayList<Item> getEventList ();
 }

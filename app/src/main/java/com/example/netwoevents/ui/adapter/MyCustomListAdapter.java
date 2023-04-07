@@ -1,4 +1,4 @@
-package com.example.netwoevents.ui.presentation.adapter;
+package com.example.netwoevents.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

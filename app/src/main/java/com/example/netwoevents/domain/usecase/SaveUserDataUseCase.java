@@ -10,7 +10,10 @@ public class SaveUserDataUseCase {
         this.ur = ur;
     }
 
-    public Boolean execute(UserData userData){
-        return ur.saveUserData(userData);
+    public Boolean execute(UserData userData) {
+        if (!ur.getUserEmail().isEmpty() && !ur.getUserPassword().isEmpty()) {
+            return ur.saveUserData(userData);
+        }
+        return false;
     }
 }

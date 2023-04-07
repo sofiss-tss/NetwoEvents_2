@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 public interface ContactRepositoryInterface {
 
-    ArrayList<Item> getContactList (Context context);
+    ArrayList<Item> getContactList ();
 }
