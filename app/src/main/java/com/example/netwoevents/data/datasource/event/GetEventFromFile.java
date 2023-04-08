@@ -1,4 +1,4 @@
-package com.example.netwoevents.data.datasource;
+package com.example.netwoevents.data.datasource.event;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class GetContactFromFile {
+public class GetEventFromFile {
+
     private Context context;
 
-    public GetContactFromFile(Context context) {
+    public GetEventFromFile(Context context) {
         this.context = context;
     }
-
 
     public ArrayList<String> getStringFromAssetFile() throws IOException
     {
@@ -26,7 +26,7 @@ public class GetContactFromFile {
         try {
             String line;
             AssetManager assetManager = context.getAssets();
-            InputStreamReader istream = new InputStreamReader(assetManager.open("names.txt"));
+            InputStreamReader istream = new InputStreamReader(assetManager.open("events.txt"));
             BufferedReader in = new BufferedReader(istream);
             while ((line = in.readLine()) != null){
                 arr.add(line);
@@ -38,20 +38,19 @@ public class GetContactFromFile {
         return arr;
     }
 
-    public ArrayList<Item> getItemContact (){
+    public ArrayList<Item> getItemEvent (){
         ArrayList<Integer> image = new ArrayList<>();
         ArrayList<Integer> image200 = new ArrayList<>();
-
-        image.add(R.drawable.a);
-        image.add(R.drawable.b);
-        image.add(R.drawable.c);
-        image.add(R.drawable.d);
-        image.add(R.drawable.e);
-        image.add(R.drawable.f);
-        image.add(R.drawable.g);
-        image.add(R.drawable.h);
-        image.add(R.drawable.i);
-        image.add(R.drawable.k);
+        image.add(R.drawable.e1);
+        image.add(R.drawable.e2);
+        image.add(R.drawable.e3);
+        image.add(R.drawable.e4);
+        image.add(R.drawable.e5);
+        image.add(R.drawable.e6);
+        image.add(R.drawable.e7);
+        image.add(R.drawable.e8);
+        image.add(R.drawable.e9);
+        image.add(R.drawable.e10);
 
         for (int i = 0; i<20; i++){
             image200.addAll(image);
@@ -61,18 +60,19 @@ public class GetContactFromFile {
 
         String [] namesContact ;
         try {
-            namesContact = getStringFromAssetFile().toArray(new
-                    String[getStringFromAssetFile().size()]);
+            namesContact = getStringFromAssetFile().toArray(new String[getStringFromAssetFile().size()]);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
         ArrayList<Item> items= new ArrayList<>();
         for (int i = 0; i < 200; i++){
             Item item = new Item(image200.get(i),namesContact[i]);
             items.add(item);
-        }
 
-        return items;
+        }
+        return  items;
 
     }
 }

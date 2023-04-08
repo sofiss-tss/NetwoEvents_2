@@ -1,8 +1,8 @@
 package com.example.netwoevents.data.repository;
 
 
-import com.example.netwoevents.data.storage.user.User;
-import com.example.netwoevents.data.storage.user.UserStorage;
+import com.example.netwoevents.data.datasource.user.User;
+import com.example.netwoevents.data.datasource.user.UserStorage;
 import com.example.netwoevents.domain.models.UserData;
 import com.example.netwoevents.domain.repository.UserRepositoryInterface;
 
@@ -16,12 +16,12 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public String getUserEmail() {
-        return userStorage.getEmail();
+        return userStorage.showEmail();
     }
 
     @Override
     public String getUserPassword() {
-       return userStorage.getPassword();
+       return userStorage.showPassword();
     }
 
 

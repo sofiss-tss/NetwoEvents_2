@@ -44,8 +44,8 @@
         android:label="fragment_event_recycler"
         tools:layout="@layout/fragment_event_recycler" >
         <action
-            android:id="@+id/action_eventRecyclerFragment_to_showItemEventFragment"
-            app:destination="@id/showItemEventFragment" />
+            android:id="@+id/action_eventRecyclerFragment_to_newEventFragment"
+            app:destination="@id/newEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/showItemContactFragment"
@@ -53,8 +53,12 @@
         android:label="fragment_show_item_contact"
         tools:layout="@layout/fragment_show_item_contact" />
     <fragment
-        android:id="@+id/showItemEventFragment"
-        android:name="com.example.netwoevents.ui.view.ShowItemEventFragment"
-        android:label="fragment_show_item_event"
-        tools:layout="@layout/fragment_show_item_event" />
+        android:id="@+id/newEventFragment"
+        android:name="com.example.netwoevents.ui.view.NewEventFragment"
+        android:label="fragment_new_event"
+        tools:layout="@layout/fragment_new_event" >
+        <action
+            android:id="@+id/action_newEventFragment_to_eventRecyclerFragment"
+            app:destination="@id/eventRecyclerFragment" />
+    </fragment>
 </navigation>

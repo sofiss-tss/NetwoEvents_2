@@ -23,10 +23,7 @@ import com.example.netwoevents.domain.usecase.GetContactListUseCase;
 import java.util.ArrayList;
 
 public class ContactListFragment extends Fragment {
-
     private ListView listView;
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -37,7 +34,7 @@ public class ContactListFragment extends Fragment {
 
         listView = (ListView) getView().findViewById(R.id.contact_list);
         MyCustomListAdapter adapter = new MyCustomListAdapter(getContext(),
-                R.layout.list_view_layout, items);
+                R.layout.list_view_layout_contact, items);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -55,11 +52,9 @@ public class ContactListFragment extends Fragment {
                 Toast.makeText(getActivity(),
                         "Здравствуйте, " + value +"!",
                         Toast.LENGTH_SHORT).show();
-
             }
         });
     }
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

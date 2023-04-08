@@ -1,6 +1,5 @@
 package com.example.netwoevents.domain.usecase;
 
-import android.content.Context;
 import com.example.netwoevents.domain.models.Item;
 import com.example.netwoevents.domain.repository.ContactRepositoryInterface;
 

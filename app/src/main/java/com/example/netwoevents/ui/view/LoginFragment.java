@@ -25,6 +25,8 @@ public class LoginFragment extends Fragment {
     private Button btnHome;
     private EditText email;
     private EditText password;
+    String em;
+    String ps;
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
@@ -39,7 +41,6 @@ public class LoginFragment extends Fragment {
 
             }
         });
-
         btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,32 +51,31 @@ public class LoginFragment extends Fragment {
 
         email = (EditText) getView().findViewById(R.id.et1);
         password = (EditText) getView().findViewById(R.id.et2);
-
-        String em = email.getText().toString();
-        String ps = password.getText().toString();
-
         btnLogin = btnHome =  (Button) getView().findViewById(R.id.button_login);
 
-        LoginViewModel loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory(getContext())).get(LoginViewModel.class);
+        LoginViewModel loginViewModel = new ViewModelProvider(this,
+                new LoginViewModelFactory(getContext())).get(LoginViewModel.class);
         btnLogin.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View view) {
+
+                em = email.getText().toString();
+                ps = password.getText().toString();
                 UserData userData = new UserData(em, ps);
+
                 loginViewModel.saveUserData(userData);
 
             }
         });
 
-
         btnHome =  (Button) getView().findViewById(R.id.button_home);
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Bundle bundle = new Bundle();
-               bundle.putString("bundleKey", em);
-               Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment2, bundle);
+              Bundle bundle = new Bundle();
+              bundle.putString("bundleKey", em);
+              Navigation.findNavController(view).navigate
+                      (R.id.action_loginFragment_to_homeFragment2, bundle);
             }
         });
     }

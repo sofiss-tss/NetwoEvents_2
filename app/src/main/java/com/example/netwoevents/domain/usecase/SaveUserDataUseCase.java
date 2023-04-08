@@ -1,5 +1,7 @@
 package com.example.netwoevents.domain.usecase;
 
+import android.util.Log;
+
 import com.example.netwoevents.domain.models.UserData;
 import com.example.netwoevents.domain.repository.UserRepositoryInterface;
 
@@ -12,6 +14,7 @@ public class SaveUserDataUseCase {
 
     public Boolean execute(UserData userData) {
         if (!ur.getUserEmail().isEmpty() && !ur.getUserPassword().isEmpty()) {
+            Log.d("mytag","usecase");
             return ur.saveUserData(userData);
         }
         return false;

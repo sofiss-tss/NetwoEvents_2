@@ -14,16 +14,11 @@ public class HomeViewModel extends ViewModel {
     }
 
     private final MutableLiveData<String> resultLive = new MutableLiveData<>();
-
-
     public Boolean getCorrectData() {
         return correctData;
     }
-
     private Boolean correctData = false;
     private SendMessageUseCase sendMessageUseCase = new SendMessageUseCase();
-
-
     public void checkMessage(Message msg)
     {
         String textToast;
@@ -37,13 +32,9 @@ public class HomeViewModel extends ViewModel {
         } else {
             textToast = "Сообщение получено! Ожидайте ответа на почте";
             correctData = true;
-
-
         }
          resultLive.setValue(textToast);
     }
-
-
     public Boolean sendMessage(Message msg){
         if (getCorrectData()) {
             sendMessageUseCase.execute(msg);
@@ -51,10 +42,6 @@ public class HomeViewModel extends ViewModel {
     }
         return false;
 }
-
-
-
-
     @Override
     protected void onCleared() {
         super.onCleared();

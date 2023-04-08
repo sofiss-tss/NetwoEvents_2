@@ -5,9 +5,6 @@ public class UserData {
     private String email;
     private String password;
 
-
-
-
     public String getEmail() {
         return email;
     }
@@ -15,7 +12,6 @@ public class UserData {
     public String getPassword() {
         return password;
     }
-
 
     public UserData(String email, String password) {
         this.email = email;

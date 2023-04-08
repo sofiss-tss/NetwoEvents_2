@@ -28,7 +28,7 @@ import java.util.List;
                             ViewGroup parent) {
             View view = inflater.inflate(this.layout, parent, false);
             TextView textView = view.findViewById(R.id.item_text);
-            ImageView imageView = view.findViewById(R.id.item_image); 
+            ImageView imageView = view.findViewById(R.id.item_image);
             Item item = items.get(position);
             textView.setText(item.getText());
             imageView.setImageResource((item.getImage()));

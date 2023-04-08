@@ -28,7 +28,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.netwoevents.R;
@@ -130,15 +129,11 @@ public class HomeFragment extends Fragment {
 
         Message msg = new Message(em, ms);
 
-
-
         HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeViewModel.getResultLive().observe(getViewLifecycleOwner(),resultLive ->{
             toastText = (String) resultLive;
 
         });
-
-
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
