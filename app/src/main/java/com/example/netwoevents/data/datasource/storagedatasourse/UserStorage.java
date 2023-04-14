@@ -1,5 +1,7 @@
-package com.example.netwoevents.data.datasource.user;
+package com.example.netwoevents.data.datasource.storagedatasourse;
 
+
+import com.example.netwoevents.data.datasource.models.User;
 
 public interface UserStorage {
 

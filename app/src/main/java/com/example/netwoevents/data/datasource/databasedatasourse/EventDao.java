@@ -1,22 +1,19 @@
-package com.example.netwoevents.data.datasource.database;
+package com.example.netwoevents.data.datasource.databasedatasourse;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-
 import java.util.List;
 
 @Dao
 public interface EventDao {
     @Insert
-    void insert(Event event);
+    void insert(EventEntity eventEntity);
 
     @Query("SELECT * FROM events")
-    LiveData<List<Event>> getAllEvents();
+    LiveData<List<EventEntity>> getAllEvents();
 
-    @Query("SELECT * FROM events WHERE id = :id")
-    Event getEventById(int id);
 
     @Query("DELETE FROM events")
     void deleteAll();

@@ -25,4 +25,36 @@
         android:layout_gravity="center"
         />
 
+    <EditText
+        android:id="@+id/send_message"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="620dp"
+        android:background="@color/bg1"
+        android:gravity="center"
+        android:hint="Введите сообщение"
+        android:textColor="@color/list"
+        android:textColorHint="@color/pole"
+        android:textSize="20dp"
+        android:visibility="invisible"
+
+
+
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_send_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_700"
+        android:layout_marginTop="625dp"
+        android:src="@drawable/send_message"
+        android:layout_marginLeft="320dp"
+        android:visibility="visible"
+        />
+
+
+
+
+
 </FrameLayout>

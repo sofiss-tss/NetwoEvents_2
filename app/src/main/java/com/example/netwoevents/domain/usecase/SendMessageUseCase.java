@@ -2,7 +2,7 @@ package com.example.netwoevents.domain.usecase;
 
 
 
-import com.example.netwoevents.domain.models.Message;
+import com.example.netwoevents.data.datasource.models.Message;
 
 
 public class SendMessageUseCase {

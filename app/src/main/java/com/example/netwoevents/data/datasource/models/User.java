@@ -1,4 +1,4 @@
-package com.example.netwoevents.data.datasource.user;
+package com.example.netwoevents.data.datasource.models;
 
 public class User {
     public String getPassword() {

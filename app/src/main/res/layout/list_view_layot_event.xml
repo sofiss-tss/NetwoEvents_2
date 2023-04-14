@@ -17,9 +17,8 @@
             android:padding="20sp"
             android:text="Event"
             android:textColor="@color/list"
-            android:textSize="25dp"
-            android:textAlignment = 'center'
-            >
+            android:textSize="20dp"
+            android:textAlignment = 'center'>
 
         </TextView>
     </LinearLayout>

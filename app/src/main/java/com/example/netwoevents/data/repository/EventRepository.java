@@ -1,13 +1,17 @@
 package com.example.netwoevents.data.repository;
 
 import android.app.Application;
-import androidx.lifecycle.LiveData;
-import androidx.room.Room;
+import android.os.Build;
 
-import com.example.netwoevents.data.datasource.database.AppDatabase;
-import com.example.netwoevents.data.datasource.database.Event;
-import com.example.netwoevents.data.datasource.database.EventDao;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
+
+import com.example.netwoevents.data.datasource.databasedatasourse.AppDatabase;
+import com.example.netwoevents.data.datasource.databasedatasourse.EventEntity;
+import com.example.netwoevents.data.datasource.models.Event;
+import com.example.netwoevents.data.datasource.databasedatasourse.EventDao;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EventRepository  {
     private EventDao eventDao;
@@ -17,14 +21,18 @@ public class EventRepository  {
 
         AppDatabase db = AppDatabase.getDatabase(application);
         eventDao = db.eventDao();
-        allEvents = eventDao.getAllEvents();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            allEvents = Transformations.map(eventDao.getAllEvents(),
+                    entities -> entities.stream().map(EventEntity::toEvent).collect(Collectors.toList()));
+        }
     }
     public LiveData<List<Event>> getAllEvents() {
         return allEvents;
     }
     public void insert(Event event) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
-            eventDao.insert(event);
+            eventDao.insert(new EventEntity(event.getTitle(), event.getLocation(),
+                    event.getDateBegin().getTimeInMillis(), event.getDateEnd().getTimeInMillis()));
         });
     }
 }

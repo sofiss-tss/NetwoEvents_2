@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.netwoevents.data.datasource.database.Event;
+import com.example.netwoevents.data.datasource.models.Event;
 import com.example.netwoevents.data.repository.EventRepository;
 
 import java.util.List;

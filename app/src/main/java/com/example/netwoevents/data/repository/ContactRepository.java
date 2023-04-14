@@ -2,8 +2,8 @@ package com.example.netwoevents.data.repository;
 
 import android.content.Context;
 
-import com.example.netwoevents.data.datasource.contact.GetContactFromFile;
-import com.example.netwoevents.domain.models.Item;
+import com.example.netwoevents.data.datasource.filedatasourse.FileContactDataSourse;
+import com.example.netwoevents.data.datasource.models.Item;
 import com.example.netwoevents.domain.repository.ContactRepositoryInterface;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class ContactRepository implements ContactRepositoryInterface {
     public ArrayList<Item> getContactList (){
 
 
-        GetContactFromFile getContactFromFile = new GetContactFromFile(context);
+        FileContactDataSourse getContactFromFile = new FileContactDataSourse(context);
         items = getContactFromFile.getItemContact();
         return items;
     }

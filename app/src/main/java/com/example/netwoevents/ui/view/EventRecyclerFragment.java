@@ -4,10 +4,13 @@ package com.example.netwoevents.ui.view;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,28 +18,33 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.example.netwoevents.R;
-import com.example.netwoevents.data.datasource.database.AppDatabase;
-import com.example.netwoevents.data.datasource.database.Event;
-import com.example.netwoevents.data.datasource.database.EventDao;
+import com.example.netwoevents.data.datasource.models.Event;
 import com.example.netwoevents.ui.adapter.EventListAdapter;
 import com.example.netwoevents.ui.viewmodel.EventViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
-
 
 public class EventRecyclerFragment extends Fragment {
-    //private RecyclerView listView;
+
 
     private EventViewModel eventViewModel;
-    String title;
+
+
+    public Event getEvent() {
+        return event;
+    }
+
+    Event event;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+
 
 
         FloatingActionButton btnAddEvent = (FloatingActionButton) getView().findViewById(R.id.btn_add);
@@ -55,20 +63,23 @@ public class EventRecyclerFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
+
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
 
         eventViewModel.getAllEvents().observe(getViewLifecycleOwner(), events -> {
 
+
             adapter.submitList(events);
         });
 
-        if(getArguments()!=null) {
-            title = getArguments().getString("bundleKey");
-            Event event = new Event(title);
+        if (event!= null){
             eventViewModel.insert(event);
+            event = null;
+        }
 
 
-}
+
 
 
 
@@ -92,8 +103,22 @@ public class EventRecyclerFragment extends Fragment {
 //        listView.setAdapter(adapter);
 
 }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(getArguments()!= null) {
+            event = (Event) getArguments().getSerializable("bundleKey");
+
+        }
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_event_recycler, container, false);
     }
+
+
+
 }

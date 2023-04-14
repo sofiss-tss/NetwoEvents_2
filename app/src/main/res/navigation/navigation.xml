@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_contactListFtagment"
+            app:destination="@id/contactListFtagment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -46,6 +49,9 @@
         <action
             android:id="@+id/action_eventRecyclerFragment_to_newEventFragment"
             app:destination="@id/newEventFragment" />
+        <action
+            android:id="@+id/action_eventRecyclerFragment_to_showItemEventFragment"
+            app:destination="@id/showItemEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/showItemContactFragment"
@@ -61,4 +67,9 @@
             android:id="@+id/action_newEventFragment_to_eventRecyclerFragment"
             app:destination="@id/eventRecyclerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/showItemEventFragment"
+        android:name="com.example.netwoevents.ui.view.ShowItemEventFragment"
+        android:label="fragment_show_item_event"
+        tools:layout="@layout/fragment_show_item_event" />
 </navigation>

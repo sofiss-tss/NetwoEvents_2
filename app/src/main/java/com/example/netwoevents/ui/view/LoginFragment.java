@@ -1,6 +1,9 @@
 package com.example.netwoevents.ui.view;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import com.example.netwoevents.R;
-import com.example.netwoevents.domain.models.UserData;
+import com.example.netwoevents.data.datasource.models.UserData;
 import com.example.netwoevents.ui.viewmodel.LoginViewModel;
 import com.example.netwoevents.ui.viewmodel.LoginViewModelFactory;
+
+import java.util.Calendar;
 
 
 public class LoginFragment extends Fragment {
@@ -72,11 +77,12 @@ public class LoginFragment extends Fragment {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
               Bundle bundle = new Bundle();
               bundle.putString("bundleKey", em);
               Navigation.findNavController(view).navigate
                       (R.id.action_loginFragment_to_homeFragment2, bundle);
-            }
+           }
         });
     }
 

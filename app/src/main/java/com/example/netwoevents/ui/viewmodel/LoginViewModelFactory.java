@@ -1,17 +1,14 @@
 package com.example.netwoevents.ui.viewmodel;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.netwoevents.data.datasource.user.ExternalStorage;
-import com.example.netwoevents.data.datasource.user.SharedPreferencesStorage;
+import com.example.netwoevents.data.datasource.storagedatasourse.SharedPreferencesStorage;
 import com.example.netwoevents.data.repository.UserRepository;
-import com.example.netwoevents.data.datasource.user.AppSpecificStorage;
-import com.example.netwoevents.data.datasource.user.UserStorage;
+import com.example.netwoevents.data.datasource.storagedatasourse.UserStorage;
 import com.example.netwoevents.domain.usecase.SaveUserDataUseCase;
 
 

@@ -1,17 +1,19 @@
-package com.example.netwoevents.data.datasource.database;
+package com.example.netwoevents.data.datasource.databasedatasourse;
 
 import android.content.Context;
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.example.netwoevents.data.datasource.models.Event;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Event.class}, version = 1, exportSchema = false)
+@Database(entities = {EventEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
-
     public abstract EventDao eventDao();
-
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
@@ -22,7 +24,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    AppDatabase.class, "Database_events").build();
+                                    AppDatabase.class, "Database_eventssssss").build();
                 }
             }
         }
@@ -30,7 +32,7 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
 
-
+//
 //    /**
 //     * Override the onCreate method to populate the database.
 //     * For this sample, we clear the database every time it is created.

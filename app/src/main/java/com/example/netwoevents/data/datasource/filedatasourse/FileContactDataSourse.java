@@ -1,10 +1,10 @@
-package com.example.netwoevents.data.datasource.contact;
+package com.example.netwoevents.data.datasource.filedatasourse;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.example.netwoevents.R;
-import com.example.netwoevents.domain.models.Item;
+import com.example.netwoevents.data.datasource.models.Item;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class GetContactFromFile {
+public class FileContactDataSourse {
     private Context context;
 
-    public GetContactFromFile(Context context) {
+    public FileContactDataSourse(Context context) {
         this.context = context;
     }
 

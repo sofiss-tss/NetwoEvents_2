@@ -1,6 +1,6 @@
 package com.example.netwoevents.domain.repository;
 
-import com.example.netwoevents.domain.models.UserData;
+import com.example.netwoevents.data.datasource.models.UserData;
 
 public interface UserRepositoryInterface {
 

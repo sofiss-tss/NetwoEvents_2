@@ -11,12 +11,14 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.netwoevents.R;
 import com.example.netwoevents.ui.viewmodel.ContactViewModel;
 import com.example.netwoevents.ui.viewmodel.HomeViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class ShowItemContactFragment extends Fragment {
@@ -27,6 +29,22 @@ public class ShowItemContactFragment extends Fragment {
 
         ImageView imageView = (ImageView) getView().findViewById(R.id.contact_image);
         TextView textView = (TextView) getView().findViewById(R.id.contact_text);
+        EditText editText = (EditText) getView().findViewById(R.id.send_message);
+
+        FloatingActionButton btnMsg = (FloatingActionButton) getView().findViewById(R.id.btn_send_message);
+        btnMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editText.setVisibility(editText.VISIBLE);
+                if(getArguments() != null) {
+                    String sharedText = (String) getArguments().getString("bundleSharedText");
+                    editText.setText(sharedText);
+
+                }
+            }
+        });
+
+
 
 
         ContactViewModel contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);

@@ -1,4 +1,4 @@
-package com.example.netwoevents.ui.view;
+package com.example.netwoevents;
 
 
 import static android.app.PendingIntent.getActivity;
@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import com.example.netwoevents.R;
+import com.example.netwoevents.ui.view.MainActivity;
 
 public class EventService extends Service {
 

@@ -1,9 +1,9 @@
 package com.example.netwoevents.data.repository;
 
 
-import com.example.netwoevents.data.datasource.user.User;
-import com.example.netwoevents.data.datasource.user.UserStorage;
-import com.example.netwoevents.domain.models.UserData;
+import com.example.netwoevents.data.datasource.models.User;
+import com.example.netwoevents.data.datasource.storagedatasourse.UserStorage;
+import com.example.netwoevents.data.datasource.models.UserData;
 import com.example.netwoevents.domain.repository.UserRepositoryInterface;
 
 public class UserRepository implements UserRepositoryInterface {

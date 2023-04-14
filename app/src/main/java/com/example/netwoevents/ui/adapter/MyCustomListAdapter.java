@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.netwoevents.R;
-import com.example.netwoevents.domain.models.Item;
+import com.example.netwoevents.data.datasource.models.Item;
 
 import java.util.List;
 

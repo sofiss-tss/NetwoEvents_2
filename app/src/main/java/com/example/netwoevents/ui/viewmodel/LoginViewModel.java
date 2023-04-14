@@ -2,7 +2,7 @@ package com.example.netwoevents.ui.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.netwoevents.domain.models.UserData;
+import com.example.netwoevents.data.datasource.models.UserData;
 import com.example.netwoevents.domain.usecase.SaveUserDataUseCase;
 
 public class LoginViewModel extends ViewModel {

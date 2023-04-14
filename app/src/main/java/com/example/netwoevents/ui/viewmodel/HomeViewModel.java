@@ -3,7 +3,7 @@ package com.example.netwoevents.ui.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.netwoevents.domain.models.Message;
+import com.example.netwoevents.data.datasource.models.Message;
 import com.example.netwoevents.domain.usecase.CheckEmailValidUseCase;
 import com.example.netwoevents.domain.usecase.SendMessageUseCase;
 

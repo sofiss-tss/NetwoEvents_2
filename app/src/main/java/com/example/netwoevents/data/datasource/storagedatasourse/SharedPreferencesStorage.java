@@ -1,10 +1,11 @@
-package com.example.netwoevents.data.datasource.user;
+package com.example.netwoevents.data.datasource.storagedatasourse;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.netwoevents.R;
+import com.example.netwoevents.data.datasource.models.User;
 
 
 public class SharedPreferencesStorage implements UserStorage {

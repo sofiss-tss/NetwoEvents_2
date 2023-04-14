@@ -15,28 +15,65 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.netwoevents.R;
+import com.example.netwoevents.data.datasource.models.Event;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class NewEventFragment extends Fragment {
+
+    public Calendar FromStringToCalendar(String dateString){
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = null;
+        try {
+            date = format.parse(dateString);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        EditText editText = (EditText) getView().findViewById(R.id.edit_text_new_event);
+        EditText editTextTitle = (EditText) getView().findViewById(R.id.edit_text_new_event);
+        EditText editTextDateBegin = (EditText)getView().findViewById(R.id.et_data_begin);
+        EditText editTextDateEnd = (EditText)getView().findViewById(R.id.et_data_end);
+        EditText editTextLoc = (EditText)getView().findViewById(R.id.et_location);
         Button btnSave = (Button) getView().findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                String newEvent = editText.getText().toString();
+                String newEvent = editTextTitle.getText().toString();
+                String dateBegin = editTextDateBegin.getText().toString();
+                String dateEnd = editTextDateEnd.getText().toString();
+                String location = editTextLoc.getText().toString();
+
                 Bundle bundle = new Bundle();
                 if(newEvent.isEmpty())
                 {
                     Toast.makeText(getContext(), "Ввведите название", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    bundle.putString("bundleKey", newEvent);
+
+
+
+                    Event event = new Event(newEvent, location,FromStringToCalendar(dateBegin),
+                            FromStringToCalendar(dateEnd));
+                    bundle.putSerializable("bundleKey",event);
+
+//                    bundle.putString("bundleKey", newEvent);
+//                    bundle.putString("bundleKey_date1", dateBegin);
+//                    bundle.putString("bundleKey_date2", dateEnd);
+//                    bundle.putString("bundleKey_location", location);
                     Navigation.findNavController(view).navigate
                             (R.id.action_newEventFragment_to_eventRecyclerFragment, bundle);
                 }

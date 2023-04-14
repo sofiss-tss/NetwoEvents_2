@@ -30,8 +30,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.netwoevents.EventService;
 import com.example.netwoevents.R;
-import com.example.netwoevents.domain.models.Message;
+import com.example.netwoevents.data.datasource.models.Message;
 import com.example.netwoevents.ui.viewmodel.HomeViewModel;
 
 public class HomeFragment extends Fragment {
